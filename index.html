@@ -109,6 +109,7 @@ function canMove(x, y){
 let startMove = {};
 
 $(document).on('touchstart', function(e) {
+    e.originalEvent.preventDefault();
     startMove.x = e.originalEvent.touches[0].pageX;
     startMove.y = e.originalEvent.touches[0].pageY;
 });
