@@ -34,15 +34,11 @@ body {
     </style>
   </head>
   <body>
-    <canvas id="GameBoardCanvas" width="1000px" height="1000px"></canvas>
+    <canvas id="GameBoardCanvas" width="950px" height="950px"></canvas>
     <div id="win">Hey, you did that!</div>
     <script>
 var canvas = $('#GameBoardCanvas');
-      if (document.body.clientWidth > document.body.clientHeight) {
-         canvas.width = document.body.clientWidth; 
-      } else {
-         canvas.width = document.body.clientHeight*0.9; 
-      }
+canvas.width = document.body.clientWidth; 
       
 var img = new Image();
 
