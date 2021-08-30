@@ -2,6 +2,121 @@
 <html>
   <body>
     <canvas id="GameBoardCanvas" width="320px" height="320px"></canvas>
-    <script async src="//jsfiddle.net/t8vLnsx2/1/embed/"></script>
+    <script>
+    var canvas = $('#GameBoardCanvas');
+var img = new Image();
+//The game board 1 = walls, 0 = free space, and -1 = the goal
+var board = [
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+    [ 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1],
+    [ 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0],
+    [ 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0],
+    [ 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0],
+    [ 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1],
+    [ 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1],
+    [ 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1],
+    [ 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1],
+
+];
+var player = {};
+var goal = {};
+
+function start() {
+setPlayer();
+setGoal();
+setInterval(() => {setGoal(); draw();}, 5000);
+}
+start();
+
+function setPlayer() {
+  let x = Math.floor(Math.random()*board.length);
+  let y = Math.floor(Math.random()*board.length);
+
+  if(canMove(x, y)) {
+    player.x = x;
+    player.y = y;
+  } else {
+    setPlayer();
+  }
+}
+
+function setGoal() {
+  if (goal.x !== undefined && goal.y !== undefined) {
+    board[goal.y][goal.x] = 0;
+  }
+  let x = Math.floor(Math.random()*board.length);
+  let y = Math.floor(Math.random()*board.length);
+
+  if(canMove(x, y) && x !== player.x && y !== player.y) {
+    goal.x = x;
+    goal.y = y;
+    board[goal.y][goal.x] = -1;
+  } else {
+    setGoal();
+  }
+}
+
+//Draw the game board
+function draw(){
+    var width = canvas.width();
+    var blockSize = width/board.length;
+    var ctx = canvas[0].getContext('2d');
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, width, width);
+    ctx.fillStyle="black";
+    //Loop through the board array drawing the walls and the goal
+    for(var y = 0; y < board.length; y++){
+        for(var x = 0; x < board[y].length; x++){
+            //Draw a wall
+            if(board[y][x] === 1){
+                ctx.fillRect(x*blockSize, y*blockSize, blockSize, blockSize);
+            }
+        }
+    }
+                //Draw the goal
+              goal_image = new Image();
+              goal_image.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOU7jULGkhuJQqsEUPz9cz0oKiFN0PPPalkleHU9gJn_EfTcdjOcyOkMu_3oSq_a6ec5Y&usqp=CAU';
+              goal_image.onload = function(){
+              ctx.drawImage(goal_image, goal.x*blockSize, goal.y*blockSize, blockSize, blockSize);    
+            }
+    //Draw the player
+              player_image = new Image();
+              player_image.src = 'https://styles.redditmedia.com/t5_eus32/styles/profileIcon_snooc28b9337-1982-4c16-af66-7e48e97438af-headshot-f.png?width=256&height=256&crop=256:256,smart&s=6e4bd463bd5b5b5dae29fb9e29316a44cb4544ef';
+              player_image.onload = function(){
+              ctx.drawImage(player_image, player.x*blockSize, player.y*blockSize, blockSize, blockSize);    
+            }
+}
+
+//Check to see if the new space is inside the board and not a wall
+function canMove(x, y){
+    return (y>=0) && (y<board.length) && (x >= 0) && (x < board[y].length) && (board[y][x] != 1);
+}
+
+$(document).touchmove(function(e) {
+    if((e.deltaX < 0 && Math.abs(e.deltaY) < Math.abs(e.deltaX)) && canMove(player.x, player.y-1))//Up arrow
+        player.y--;
+    else if((e.deltaX > 0 && Math.abs(e.deltaY) < Math.abs(e.deltaX)) && canMove(player.x, player.y+1)) // down arrow
+        player.y++;
+    else if((e.deltaY < 0 && Math.abs(e.deltaX) < Math.abs(e.deltaY)) && canMove(player.x-1, player.y))
+        player.x--;
+    else if((e.deltaY < 0 && Math.abs(e.deltaX) < Math.abs(e.deltaY)) && canMove(player.x+1, player.y))
+        player.x++;
+    checkFinish();
+    draw();
+    e.preventDefault();
+});
+
+draw();
+
+function checkFinish() {
+  if (player.x === goal.x && player.y === goal.y) {
+    setPlayer();
+    setGoal();
+    return true
+  }
+  return false
+}</script>
   </body>
 </html>
