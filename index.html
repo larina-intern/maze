@@ -98,7 +98,7 @@ function canMove(x, y){
 }
 let startMove;
 
-document.on('touchstartMove', function(e) {
+$(document).on('touchstartMove', function(e) {
     e.preventDefault();
     startMove = {
       x: e.pageX,
@@ -106,7 +106,7 @@ document.on('touchstartMove', function(e) {
     }
     console.log('start')
 });
-document.on('touchend', function(e) {
+$(document).on('touchend', function(e) {
     e.preventDefault();
     console.log('end')
     let deltaX = e.pageX - startMove.x;
