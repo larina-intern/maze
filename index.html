@@ -113,8 +113,7 @@ $(document).on('touchstart', function(e) {
     startMove.y = e.originalEvent.touches[0].pageY;
 });
 $(document).on('touchend', function(e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
+    e.originalEvent.touches[0].preventDefault();
   
     let deltaX = e.originalEvent.changedTouches[0].pageX - startMove.x;
     let deltaY = e.originalEvent.changedTouches[0].pageY - startMove.y;
@@ -128,7 +127,7 @@ $(document).on('touchend', function(e) {
         player.y++;
     checkFinish();
     draw();
-}, { passive: false });
+});
 
 draw();
 
