@@ -90,13 +90,13 @@ function draw(){
     }
                 //Draw the goal
               goal_image = new Image();
-              goal_image.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOU7jULGkhuJQqsEUPz9cz0oKiFN0PPPalkleHU9gJn_EfTcdjOcyOkMu_3oSq_a6ec5Y&usqp=CAU';
+              goal_image.src = 'https://ibb.co/Ttt3m8f';
               goal_image.onload = function(){
               ctx.drawImage(goal_image, goal.x*blockSize, goal.y*blockSize, blockSize, blockSize);    
             }
     //Draw the player
               player_image = new Image();
-              player_image.src = 'https://styles.redditmedia.com/t5_eus32/styles/profileIcon_snooc28b9337-1982-4c16-af66-7e48e97438af-headshot-f.png?width=256&height=256&crop=256:256,smart&s=6e4bd463bd5b5b5dae29fb9e29316a44cb4544ef';
+              player_image.src = 'https://ibb.co/JywTvj7';
               player_image.onload = function(){
               ctx.drawImage(player_image, player.x*blockSize, player.y*blockSize, blockSize, blockSize);    
             }
@@ -109,13 +109,10 @@ function canMove(x, y){
 let startMove = {};
 
 $(document).on('touchstart', function(e) {
-    e.originalEvent.preventDefault();
     startMove.x = e.originalEvent.touches[0].pageX;
     startMove.y = e.originalEvent.touches[0].pageY;
 });
 $(document).on('touchend', function(e) {
-    e.originalEvent.preventDefault();
-  
     let deltaX = e.originalEvent.changedTouches[0].pageX - startMove.x;
     let deltaY = e.originalEvent.changedTouches[0].pageY - startMove.y;
          if(deltaX < 0 && (Math.abs(deltaY) < Math.abs(deltaX)) && canMove(player.x-1, player.y))
