@@ -98,12 +98,16 @@ function canMove(x, y){
 }
 
 $(document).on('touchstart', function(e) {
+    e.preventDefault();
     let start = {
       x: e.pageX,
       y: e.pageY
     }
+    console.log('start')
     
     $(document).on('touchend', function(ev) {
+          ev.preventDefault();
+    console.log('end')
     let deltaX = ev.pageX - start.x;
     let deltaY = ev.pageY - start.y;
 
@@ -117,7 +121,6 @@ $(document).on('touchstart', function(e) {
         player.x++;
     checkFinish();
     draw();
-    e.preventDefault();
 });
 });
 
