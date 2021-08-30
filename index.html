@@ -99,8 +99,8 @@ function canMove(x, y){
 let startMove = {};
 
 $(document).on('touchstart', function(e) {
-    startMove.x = e.pageX;
-    startMove.y = e.pageY;
+    startMove.x = e.originalEvent.touches[0].pageX;
+    startMove.y = e.originalEvent.touches[0].pageY;
     
     console.log(startMove)
 });
