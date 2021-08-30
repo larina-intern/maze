@@ -64,6 +64,7 @@ function start() {
 setPlayer();
 setGoal();
 setInterval(() => {setGoal(); draw();}, 5000);
+draw();
 }
 start();
 
@@ -136,6 +137,7 @@ $(document).on('touchstart', function(e) {
     startMove.x = e.originalEvent.touches[0].pageX;
     startMove.y = e.originalEvent.touches[0].pageY;
 });
+      
 $(document).on('touchend', function(e) {
     let deltaX = e.originalEvent.changedTouches[0].pageX - startMove.x;
     let deltaY = e.originalEvent.changedTouches[0].pageY - startMove.y;
@@ -150,6 +152,7 @@ $(document).on('touchend', function(e) {
     checkFinish();
     draw();
 });
+      
 $(document).keyup(function(e){
     e.preventDefault();
     if((e.which == 38) && canMove(player.x, player.y-1))//Up arrow
@@ -165,16 +168,12 @@ $(document).keyup(function(e){
     draw();
 });
 
-draw();
-
 function checkFinish() {
   if (player.x === goal.x && player.y === goal.y) {
     showWinBanner();
     setTimeout(() => {
-    setPlayer();
-    setGoal();
+    start();
     hideWinBanner();
-    draw();
     return true
     }, 2000)
   }
@@ -188,8 +187,6 @@ $('#win').css('display', 'block');
 function hideWinBanner() {
 $('#win').css('display', 'none');
 }
-
-
     </script>
   </body>
 </html>
