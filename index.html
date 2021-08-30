@@ -172,7 +172,8 @@ function checkFinish() {
   if (player.x === goal.x && player.y === goal.y) {
     showWinBanner();
     setTimeout(() => {
-    start();
+    setPlayer();
+    setGoal();
     hideWinBanner();
     return true
     }, 2000)
