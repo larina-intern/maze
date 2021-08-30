@@ -105,8 +105,8 @@ $(document).on('touchstart', function(e) {
     console.log(startMove)
 });
 $(document).on('touchend', function(e) {
-    let deltaX = e.originalEvent.touches[0].pageX - startMove.x;
-    let deltaY = e.originalEvent.touches[0].pageY - startMove.y;
+    let deltaX = e.originalEvent.changedTouches[0].pageX - startMove.x;
+    let deltaY = e.originalEvent.changedTouches[0].pageY - startMove.y;
     console.log(deltaX, deltaY)
     if((deltaX < 0 && Math.abs(deltaY) < Math.abs(deltaX)) && canMove(player.x, player.y-1))
         player.y--;
