@@ -96,9 +96,9 @@ function draw(){
 function canMove(x, y){
     return (y>=0) && (y<board.length) && (x >= 0) && (x < board[y].length) && (board[y][x] != 1);
 }
-let startMove ={};
+let startMove = {};
 
-$(document).on('touchstartMove', function(e) {
+$(document).on('touchstart', function(e) {
     e.preventDefault();
     startMove.x = e.pageX;
     startMove.y = e.pageY;
