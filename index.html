@@ -66,7 +66,7 @@ function setGoal() {
 
 //Draw the game board
 function draw(){
-    var width = canvas.width();
+    var width = canvas.width;
     var blockSize = width/board.length;
     var ctx = canvas[0].getContext('2d');
     ctx.setTransform(1, 0, 0, 1, 0, 0);
