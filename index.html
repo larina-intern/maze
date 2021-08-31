@@ -38,7 +38,13 @@ body {
     <div id="win">Hey, you did that!</div>
     <script>
 var canvas = $('#GameBoardCanvas');
-canvas.width = document.body.clientWidth; 
+      if (document.innerWidth < document.innerHeight) {
+        canvas.width = document.innerWidth; 
+        canvas.height = document.innerWidth; 
+      } else {
+        canvas.height = document.innerHeight; 
+        canvas.width = document.innerHeight; 
+      }
       
 var img = new Image();
 
