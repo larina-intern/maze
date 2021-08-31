@@ -36,16 +36,7 @@ body {
   <body>
     <canvas id="GameBoardCanvas" width="1000px" height="1000px"></canvas>
     <div id="win">Hey, you did that!</div>
-    <script>
-var canvas = $('#GameBoardCanvas');
-    if (window.innerWidth < window.innerHeight) {
-    canvas.attr('width', `${window.innerWidth}px`);
-    canvas.attr('height', `${window.innerWidth}px`);
-} else {
-    canvas.attr('width', `${window.innerHeight}px`);
-    canvas.attr('height', `${window.innerHeight}px`);
-}
-      
+    <script>      
 var img = new Image();
 
 var board = [
