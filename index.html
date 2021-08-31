@@ -34,11 +34,17 @@ body {
     </style>
   </head>
   <body>
-    <canvas id="GameBoardCanvas"></canvas>
+    <canvas id="GameBoardCanvas" width="1000px" height="1000px"></canvas>
     <div id="win">Hey, you did that!</div>
     <script>
 var canvas = $('#GameBoardCanvas');
-    canvas.attr('width', window.innerWidth + 'px');
+    if (window.innerWidth < window.innerHeight) {
+    canvas.attr('width', `${window.innerWidth}px`);
+    canvas.attr('height', `${window.innerWidth}px`);
+} else {
+    canvas.attr('width', `${window.innerHeight}px`);
+    canvas.attr('height', `${window.innerHeight}px`);
+}
       
 var img = new Image();
 
