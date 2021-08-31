@@ -39,11 +39,11 @@ body {
     <script>
 var canvas = $('#GameBoardCanvas');
 if (window.innerWidth < window.innerHeight) {
-    canvas.width = window.innerWidth; 
-    canvas.height = window.innerWidth; 
+    canvas.attr('width', `${window.innerWidth}px`);
+    canvas.attr('height', `${window.innerWidth}px`);
 } else {
-    canvas.width = window.innerHeight; 
-    canvas.height = window.innerHeight; 
+    canvas.attr('width', `${window.innerHeight}px`);
+    canvas.attr('height', `${window.innerHeight}px`);
 }
       
 var img = new Image();
