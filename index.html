@@ -35,7 +35,7 @@ body {
   </head>
   <body>
     <canvas id="GameBoardCanvas" width="1000px" height="1000px"></canvas>
-    <div id="win">Hey, you did that!</div>
+    <div id="win"></div>
     <script>  
 var canvas = $('#GameBoardCanvas');
       if (window.innerWidth < window.innerHeight) {
@@ -50,6 +50,13 @@ var canvas = $('#GameBoardCanvas');
          canvas.height = window.innerWidth;
       }
 var img = new Image();
+
+var cat = {
+hoover: 'https://i.ibb.co/GRRSc26/Mask-Group-2.webp',
+fixel: 'https://i.ibb.co/pxWg69H/Mask-Group.webp'
+}
+
+var currentCat = cat.hoover;
 
 var board = [
     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -123,7 +130,7 @@ function draw(){
     }
                 //Draw the goal
               goal_image = new Image();
-              goal_image.src = 'https://i.ibb.co/GRRSc26/Mask-Group-2.webp';
+              goal_image.src = currentCat;
               goal_image.onload = function(){
               ctx.drawImage(goal_image, goal.x*blockSize, goal.y*blockSize, blockSize, blockSize);    
             }
@@ -181,7 +188,9 @@ function checkFinish() {
     showWinBanner();
     setTimeout(() => {
     setPlayer();
+    changeCat();
     setGoal();
+    draw();
     hideWinBanner();
     return true
     }, 2000)
@@ -195,6 +204,10 @@ $('#win').css('display', 'block');
 
 function hideWinBanner() {
 $('#win').css('display', 'none');
+}
+
+function changeCat() {
+  currentCat = (currentCat === cat.hoover) ? cat.fixel : cat.hoover;
 }
     </script>
   </body>
