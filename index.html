@@ -34,7 +34,7 @@ body {
     </style>
   </head>
   <body>
-    <canvas id="GameBoardCanvas" width="950px" height="950px"></canvas>
+    <canvas id="GameBoardCanvas" width="1000px" height="1000px"></canvas>
     <div id="win">Hey, you did that!</div>
     <script>
 var canvas = $('#GameBoardCanvas');
@@ -120,7 +120,7 @@ function draw(){
             }
     //Draw the player
               player_image = new Image();
-              player_image.src = 'https://i.ibb.co/MGxHckV/Mask-Group-4.webp';
+              player_image.src = 'https://i.ibb.co/YZMDg9w/image.webp';
               player_image.onload = function(){
               ctx.drawImage(player_image, player.x*blockSize, player.y*blockSize, blockSize, blockSize);    
             }
